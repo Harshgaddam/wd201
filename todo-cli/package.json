@@ -9,10 +9,14 @@
   },
   "lint-staged": {
     "*.js": [
-      "eslint",
-      "prettier --write ."
+        "eslint --fix",
+        "git add"
+    ],
+    "*.{js, jsx, json, html, css}": [
+        "prettier --write",
+        "git add"
     ]
-  },
+},
   "author": "",
   "license": "ISC",
   "devDependencies": {
