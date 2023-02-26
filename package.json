@@ -24,10 +24,14 @@
   },
   "lint-staged": {
     "*.js": [
-      "eslint",
-      "prettier --write ."
+        "eslint --fix",
+        "git add"
+    ],
+    "*.{js, jsx, json, html, css}": [
+        "prettier --write",
+        "git add"
     ]
-  },
+},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Harshgaddam/wd201.git"
