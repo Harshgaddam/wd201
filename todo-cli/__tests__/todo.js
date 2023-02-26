@@ -59,7 +59,7 @@ describe("TodoList Test Suite", () => {
 
   test("Retrieval of Over Due items", () => {
     var overDueArr = overdue();
-    console.log(overDueArr);
+    var formattedOverdues = toDisplayableList(overDueArr);
     expect(overDueArr.length).toBe(1);
   });
 
