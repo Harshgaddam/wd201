@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Tailwind css CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body>
+    <div class="flex justify-center items-center bg-slate-1000">
+      <div
+        id="form"
+        class="block bg-slate-50 p-6 rounded-xl shodow-md shadow-slate-350 w-100"
+      >
+        <form id="user-form">
+          <h1 class="text-blue-700 text-3xl font-semibold my-4">
+            Registration Form
+          </h1>
+
+          <!-- name -->
+          <label for="name" class="text-sm"><strong>Name</strong></label
+          ><br />
+          <input
+            required
+            type="text"
+            name="name"
+            id="name"
+            class="h-8 w-full rounded-md border border-slate-300 text-sm pl-2 bg-transparent outline-blue-600 shadow-sm"
+          />
+
+          <!-- email -->
+          <label for="email" class="text-sm"><strong>Email</strong></label
+          ><br />
+          <input
+            required
+            type="email"
+            name="email"
+            id="email"
+            class="h-8 w-full rounded-md border border-slate-300 text-sm pl-2 bg-transparent outline-blue-600 shadow-sm"
+          />
+          <!-- password -->
+          <label for="password" class="text-sm"><strong>Password</strong></label
+          ><br />
+          <input
+            required
+            type="password"
+            name="password"
+            id="password"
+            class="h-8 w-full rounded-md border border-slate-300 text-sm pl-2 bg-transparent outline-blue-600 shadow-sm"
+          />
+          <!-- dob -->
+          <label for="dob" class="text-sm"><strong>Date of Birth</strong></label
+          ><br />
+          <input
+            required
+            type="date"
+            name="dob"
+            id="dob"
+            class="h-8 w-full rounded-md border border-slate-300 text-sm pl-2 bg-transparent outline-blue-600 shadow-sm"
+          />
+          <br />
+          <br />
+
+          <input required type="checkbox" name="terms" id="acceptTerms" />
+          <label for="acceptTerms" class="text-sm"
+            ><strong>Accept Terms & Conditions</strong></label
+          ><br />
+          <br />
+          <input
+            type="submit"
+            name="submit"
+            id="submit"
+            class="bg-purple-600 w-full h-10 cursor-pointer text-white rounded-md hover:bg-purple-600 hover:outline outline-2 outline-blue-600 outline-offset-2 text-sm"
+          /><br />
+        </form>
+      </div>
+    </div>
+
+    <div class="flex justify-center items-center bg-slate-1000">
+      <div id="inner" class="block h-auto bg-slate-50 p-6 rounded-xl">
+        <h2 class="text-2xl text-center font-bold">Entries</h2>
+        <div h-screen class="divide-y divide-gray" id="user-entries"></div>
+      </div>
+    </div>
+
+    <script>
+      var today = new Date();
+      var minDate = new Date(
+        today.getFullYear() - 55,
+        today.getMonth(),
+        today.getDate()
+      )
+        .toISOString()
+        .split("T")[0];
+      var maxDate = new Date(
+        today.getFullYear() - 18,
+        today.getMonth(),
+        today.getDate()
+      )
+        .toISOString()
+        .split("T")[0];
+      document.getElementById("dob").setAttribute("min", minDate);
+      document.getElementById("dob").setAttribute("max", maxDate);
+    </script>
+    <script src="./registration.js"></script>
+  </body>
+</html>
