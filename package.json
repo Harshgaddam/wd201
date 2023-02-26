@@ -21,7 +21,7 @@
     "prepare": "cd .. && husky install todo-cli/.husky"
   },
   "lint-staged": {
-    "*.js": [
+    "*.{js, jsx, ts, tsx, md, html}": [
       "eslint",
       "prettier --write ."
     ]
