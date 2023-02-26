@@ -1,6 +1,5 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
-let h = 1;
 const todoList = require("../todo");
 const { all, markAsComplete, add } = todoList();
 
