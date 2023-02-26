@@ -8,10 +8,8 @@
     "prepare": "cd .. && husky install todo-cli/.husky"
   },
   "lint-staged": {
-    "*.js": [
-      "eslint",
-      "prettier --write ."
-    ]
+    "*.{js,ts,css,scss,md,html}": "prettier --write",
+    "*.js": "eslint --fix"
   },
   "author": "",
   "license": "ISC",

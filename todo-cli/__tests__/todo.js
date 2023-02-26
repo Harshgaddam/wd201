@@ -7,7 +7,6 @@
 /* eslint-disable padded-blocks */
 /* eslint-disable semi */
 /* eslint-disable no-undef */
-let j = 1;
 const todoList = require("../todo");
 const { all, markAsComplete, add } = todoList();
 
