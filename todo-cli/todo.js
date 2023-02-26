@@ -2,9 +2,11 @@
 /* eslint-disable no-undef */
 const todoList = () => {
   all = [];
+
   const add = (todoItem) => {
     all.push(todoItem);
   };
+
   const markAsComplete = (index) => {
     all[index].completed = true;
   };
@@ -17,6 +19,7 @@ const todoList = () => {
     for (let i = 0; i < all.length; i++) {
       if (Number(all[i].dueDate.substr(8, 10)) < today) overDue.push(all[i]);
     }
+    console.log(overDue);
     return overDue;
   };
 
