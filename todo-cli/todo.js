@@ -25,50 +25,28 @@ const todoList = () => {
   };
 
   const overdue = () => {
-    // Write the date check condition here and return the array
-    // of overdue items accordingly.
-    overDue = [];
-    for (let i = 0; i < all.length; i++) {
-      if (Date.parse(all[i].dueDate) < Date.parse(today)) overDue.push(all[i]);
-    }
-    return overDue;
+    return all.filter((item) => item.dueDate < today);
   };
 
   const dueToday = () => {
-    // Write the date check condition here and return the array
-    // of todo items that are due today accordingly.
-    duetoday = [];
-    for (let i = 0; i < all.length; i++) {
-      if (Date.parse(all[i].dueDate) === Date.parse(today))
-        duetoday.push(all[i]);
-    }
-    return duetoday;
+    return all.filter((item) => item.dueDate === today);
   };
 
   const dueLater = () => {
-    // Write the date check condition here and return the array
-    // of todo items that are due later accordingly.
-    duelater = [];
-    for (let i = 0; i < all.length; i++) {
-      if (Date.parse(all[i].dueDate) > Date.parse(today)) duelater.push(all[i]);
-    }
-    return duelater;
+    return all.filter((item) => item.dueDate > today);
   };
 
   const toDisplayableList = (list) => {
-    // Format the To-Do list here, and return the output string
-    // as per the format given above.
-    let s = "";
-    let size = list.length;
-    for (let i = 0; i < size; i++) {
-      if (list[i].completed === true) s += "[x]";
-      else s += "[ ]";
-      s += ` ${list[i].title}`;
-      if (Number(list[i].dueDate.substr(8, 10)) !== today)
-        s += ` ${list[i].dueDate}`;
-      if (i !== size - 1) s += "\n";
-    }
-    return s;
+    return list
+      .map(
+        (item) =>
+          `${item.completed ? "[x]" : "[ ]"} ${item.title} ${
+            item.dueDate === new Date().toLocaleDateString("en-CA")
+              ? " "
+              : item.dueDate
+          }`
+      )
+      .join("\n");
   };
 
   return {
