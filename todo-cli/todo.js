@@ -32,7 +32,6 @@ const todoList = () => {
     // of overdue items accordingly.
     overDue = [];
     for (let i = 0; i < all.length; i++) {
-      console.log("yeaterday", Date.parse(all[i].dueDate), Date.parse(today));
       if (Date.parse(all[i].dueDate) < Date.parse(today)) overDue.push(all[i]);
     }
     return overDue;
@@ -43,13 +42,6 @@ const todoList = () => {
     // of todo items that are due today accordingly.
     duetoday = [];
     for (let i = 0; i < all.length; i++) {
-      console.log(
-        "today",
-        Date.parse(all[i].dueDate),
-        Date.parse(today),
-        all[i].dueDate,
-        today
-      );
       if (Date.parse(all[i].dueDate) === Date.parse(today))
         duetoday.push(all[i]);
     }
@@ -61,7 +53,6 @@ const todoList = () => {
     // of todo items that are due later accordingly.
     duelater = [];
     for (let i = 0; i < all.length; i++) {
-      console.log("tomorrow", Date.parse(all[i].dueDate), Date.parse(today));
       if (Date.parse(all[i].dueDate) > Date.parse(today)) duelater.push(all[i]);
     }
     return duelater;
