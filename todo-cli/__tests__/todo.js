@@ -50,7 +50,6 @@ describe("TodoList Test Suite", () => {
     });
     expect(all.length).toBe(todoListLength + 1);
   });
-  console.log(all);
 
   test("Marking todo as complete", () => {
     expect(all[1].completed).toBe(false);
@@ -62,7 +61,6 @@ describe("TodoList Test Suite", () => {
     var tempOverDueArr = all.slice(0, 1); // slicing array to get overDue tasks
     var tempFormattedOverdues = toDisplayableList(tempOverDueArr); // frormatting it
     var overDueArr = overdue(); // getting overDue tasks from todo.js function
-    console.log(overDueArr);
     var formattedOverdues = toDisplayableList(overDueArr); // formatting it
     expect(formattedOverdues).toEqual(tempFormattedOverdues); // checking for formatted string equality
   });

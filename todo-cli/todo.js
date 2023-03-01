@@ -14,13 +14,10 @@ const todoList = () => {
     new Date(new Date().setDate(dateToday.getDate() + 1))
   );
 
-  console.log(yesterday, today, tomorrow);
-
   all = [];
 
   const add = (todoItem) => {
     all.push(todoItem);
-    // console.log(all);
   };
 
   const markAsComplete = (index) => {
