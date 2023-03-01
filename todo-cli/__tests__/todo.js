@@ -46,10 +46,11 @@ describe("TodoList Test Suite", () => {
     add({
       title: "Adding File tax",
       completed: false,
-      dueDate: new Date().toISOString(),
+      dueDate: tomorrow,
     });
     expect(all.length).toBe(todoListLength + 1);
   });
+  console.log(all);
 
   test("Marking todo as complete", () => {
     expect(all[1].completed).toBe(false);
@@ -58,18 +59,27 @@ describe("TodoList Test Suite", () => {
   });
 
   test("Retrieval of Over Due items", () => {
-    var overDueArr = overdue();
-    var formattedOverdues = toDisplayableList(overDueArr);
-    expect(overDueArr.length).toBe(1);
+    var tempOverDueArr = all.slice(0, 1); // slicing array to get overDue tasks
+    var tempFormattedOverdues = toDisplayableList(tempOverDueArr); // frormatting it
+    var overDueArr = overdue(); // getting overDue tasks from todo.js function
+    console.log(overDueArr);
+    var formattedOverdues = toDisplayableList(overDueArr); // formatting it
+    expect(formattedOverdues).toEqual(tempFormattedOverdues); // checking for formatted string equality
   });
 
   test("Retrieval of Due Today items", () => {
+    var tempDueTodayArr = all.slice(1, 3);
+    var tempFormattedDueToday = toDisplayableList(tempDueTodayArr);
     var dueTodayArr = dueToday();
-    expect(dueTodayArr.length).toBe(2);
+    var formattedDueToday = toDisplayableList(dueTodayArr);
+    expect(formattedDueToday).toEqual(tempFormattedDueToday);
   });
 
   test("Retrieval of Due Later items", () => {
+    var tempDueLaterArr = all.slice(3);
+    var tempFormattedDueLater = toDisplayableList(tempDueLaterArr);
     var dueLaterArr = dueLater();
-    expect(dueLaterArr.length).toBe(2);
+    var formattedDueLater = toDisplayableList(dueLaterArr);
+    expect(formattedDueLater).toEqual(tempFormattedDueLater);
   });
 });

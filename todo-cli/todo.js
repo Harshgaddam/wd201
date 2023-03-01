@@ -1,10 +1,26 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 const todoList = () => {
+  const formattedDate = (d) => {
+    return d.toISOString().split("T")[0];
+  };
+
+  var dateToday = new Date();
+  const today = formattedDate(dateToday);
+  const yesterday = formattedDate(
+    new Date(new Date().setDate(dateToday.getDate() - 1))
+  );
+  const tomorrow = formattedDate(
+    new Date(new Date().setDate(dateToday.getDate() + 1))
+  );
+
+  console.log(yesterday, today, tomorrow);
+
   all = [];
 
   const add = (todoItem) => {
     all.push(todoItem);
+    // console.log(all);
   };
 
   const markAsComplete = (index) => {
@@ -14,22 +30,28 @@ const todoList = () => {
   const overdue = () => {
     // Write the date check condition here and return the array
     // of overdue items accordingly.
-    const today = new Date().getDate();
     overDue = [];
     for (let i = 0; i < all.length; i++) {
-      if (Number(all[i].dueDate.substr(8, 10)) < today) overDue.push(all[i]);
+      console.log("yeaterday", Date.parse(all[i].dueDate), Date.parse(today));
+      if (Date.parse(all[i].dueDate) < Date.parse(today)) overDue.push(all[i]);
     }
-    console.log(overDue);
     return overDue;
   };
 
   const dueToday = () => {
     // Write the date check condition here and return the array
     // of todo items that are due today accordingly.
-    const today = new Date().getDate();
     duetoday = [];
     for (let i = 0; i < all.length; i++) {
-      if (Number(all[i].dueDate.substr(8, 10)) === today) duetoday.push(all[i]);
+      console.log(
+        "today",
+        Date.parse(all[i].dueDate),
+        Date.parse(today),
+        all[i].dueDate,
+        today
+      );
+      if (Date.parse(all[i].dueDate) === Date.parse(today))
+        duetoday.push(all[i]);
     }
     return duetoday;
   };
@@ -37,10 +59,10 @@ const todoList = () => {
   const dueLater = () => {
     // Write the date check condition here and return the array
     // of todo items that are due later accordingly.
-    const today = new Date().getDate();
     duelater = [];
     for (let i = 0; i < all.length; i++) {
-      if (Number(all[i].dueDate.substr(8, 10)) > today) duelater.push(all[i]);
+      console.log("tomorrow", Date.parse(all[i].dueDate), Date.parse(today));
+      if (Date.parse(all[i].dueDate) > Date.parse(today)) duelater.push(all[i]);
     }
     return duelater;
   };
@@ -48,7 +70,6 @@ const todoList = () => {
   const toDisplayableList = (list) => {
     // Format the To-Do list here, and return the output string
     // as per the format given above.
-    const today = new Date().getDate();
     let s = "";
     let size = list.length;
     for (let i = 0; i < size; i++) {
