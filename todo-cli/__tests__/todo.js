@@ -51,10 +51,6 @@ describe("TodoList Test Suite", () => {
     expect(all.length).toBe(todoListLength + 1);
   });
 
-  var overDueCnt = 1,
-    dueTodayCnt = 2,
-    dueLaterCnt = 3;
-
   test("Marking todo as complete", () => {
     expect(all[1].completed).toBe(false);
     markAsComplete(1);
@@ -63,16 +59,16 @@ describe("TodoList Test Suite", () => {
 
   test("Retrieval of Over Due items", () => {
     const overDue = overdue();
-    expect(overDue.length).toBe(overDueCnt);
+    expect(overDue[0].length).toBe(overDue[1]);
   });
 
   test("Retrieval of Due Today items", () => {
     const duetoday = dueToday();
-    expect(duetoday.length).toBe(dueTodayCnt);
+    expect(duetoday[0].length).toBe(duetoday[1]);
   });
 
   test("Retrieval of Due Later items", () => {
     const duelater = dueLater();
-    expect(duelater.length).toBe(dueLaterCnt);
+    expect(duelater[0].length).toBe(duelater[1]);
   });
 });
