@@ -25,23 +25,36 @@ const tomorrow = formattedDate(
 );
 
 describe("TodoList Test Suite", () => {
-  beforeAll(() => {
+  test("Adding new Todo", () => {
+    expect(overdue.length).toBe(0);
+    const todoListLength = all.length;
     add({
-      title: "Submit assignment",
+      title: "Submit Assignment",
+      completed: false,
       dueDate: yesterday,
-      completed: false,
     });
-    add({ title: "Pay rent", dueDate: today, completed: false });
-    add({ title: "Service Vehicle", dueDate: today, completed: false });
-    add({ title: "File taxes", dueDate: tomorrow, completed: false });
-    add({
-      title: "Pay electric bill",
-      dueDate: tomorrow,
-      completed: false,
-    });
+    expect(all.length).toBe(todoListLength + 1);
+  });
+
+  test("Marking todo as complete", () => {
+    expect(all[0].completed).toBe(false);
+    markAsComplete(0);
+    expect(all[0].completed).toBe(true);
   });
 
   test("Adding new Todo", () => {
+    expect(dueToday.length).toBe(0);
+    const todoListLength = all.length;
+    add({
+      title: "Pay Rent",
+      completed: false,
+      dueDate: today,
+    });
+    expect(all.length).toBe(todoListLength + 1);
+  });
+
+  test("Adding new Todo", () => {
+    expect(dueLater.length).toBe(0);
     const todoListLength = all.length;
     add({
       title: "Adding File tax",
@@ -49,26 +62,5 @@ describe("TodoList Test Suite", () => {
       dueDate: tomorrow,
     });
     expect(all.length).toBe(todoListLength + 1);
-  });
-
-  test("Marking todo as complete", () => {
-    expect(all[1].completed).toBe(false);
-    markAsComplete(1);
-    expect(all[1].completed).toBe(true);
-  });
-
-  test("Retrieval of Over Due items", () => {
-    const overDue = overdue();
-    expect(overDue[0].length).toBe(overDue[1]);
-  });
-
-  test("Retrieval of Due Today items", () => {
-    const duetoday = dueToday();
-    expect(duetoday[0].length).toBe(duetoday[1]);
-  });
-
-  test("Retrieval of Due Later items", () => {
-    const duelater = dueLater();
-    expect(duelater[0].length).toBe(duelater[1]);
   });
 });

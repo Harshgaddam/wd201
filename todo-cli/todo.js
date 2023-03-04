@@ -15,15 +15,9 @@ const todoList = () => {
   );
 
   all = [];
-  let overDueCnt = 0;
-  let dueTodayCnt = 0;
-  let dueLaterCnt = 0;
 
   const add = (todoItem) => {
     all.push(todoItem);
-    if (todoItem.dueDate < today) overDueCnt++;
-    else if (todoItem.dueDate === today) dueTodayCnt++;
-    else dueLaterCnt++;
   };
 
   const markAsComplete = (index) => {
@@ -31,16 +25,15 @@ const todoList = () => {
   };
 
   const overdue = () => {
-    console.log(overDueCnt);
-    return [all.filter((item) => item.dueDate < today), overDueCnt];
+    return all.filter((item) => item.dueDate < today);
   };
 
   const dueToday = () => {
-    return [all.filter((item) => item.dueDate === today), dueTodayCnt];
+    return all.filter((item) => item.dueDate === today);
   };
 
   const dueLater = () => {
-    return [all.filter((item) => item.dueDate > today), dueLaterCnt];
+    return all.filter((item) => item.dueDate > today);
   };
 
   const toDisplayableList = (list) => {
