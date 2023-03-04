@@ -1,3 +1,6 @@
 node_modules
 pre_configs.txt
 dynamic_websites.png
+package.json
+package-lock.json
+.eslintrc.json
