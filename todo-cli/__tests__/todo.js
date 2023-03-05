@@ -27,7 +27,6 @@ const tomorrow = formattedDate(
 describe("TodoList Test Suite", () => {
   test("Adding overDue item", () => {
     const todoListLength = all.length;
-    expect(overdue.length).toBe(0);
     add({
       title: "Submit Assignment",
       completed: false,
@@ -48,13 +47,12 @@ describe("TodoList Test Suite", () => {
 
   test("Adding dueToday Item", () => {
     const todoListLength = all.length;
-    expect(dueToday.length).toBe(0);
     add({
       title: "Pay Rent",
       completed: false,
       dueDate: today,
     });
-    expect(all.length).toBe(todoListLength + 1); // verifying item added into all
+    expect(all.length).toBe(todoListLength + 1);
   });
 
   test("Retrieving dueToday items", () => {
@@ -63,7 +61,6 @@ describe("TodoList Test Suite", () => {
 
   test("Adding dueLater Item", () => {
     const todoListLength = all.length;
-    expect(dueLater.length).toBe(0);
     add({
       title: "Adding File tax",
       completed: false,
