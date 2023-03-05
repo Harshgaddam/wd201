@@ -27,13 +27,17 @@ const tomorrow = formattedDate(
 describe("TodoList Test Suite", () => {
   test("Adding overDue item", () => {
     const todoListLength = all.length;
-    expect(overdue.length).toBe(0); // retrieving overDue items and verifying
+    expect(overdue.length).toBe(0);
     add({
       title: "Submit Assignment",
       completed: false,
       dueDate: yesterday,
     });
-    expect(all.length).toBe(todoListLength + 1); // verifying item added into all
+    expect(all.length).toBe(todoListLength + 1);
+  });
+
+  test("Retrieving overDue items", () => {
+    expect(overdue().length).toBe(1);
   });
 
   test("Marking overDue Item as complete", () => {
@@ -44,7 +48,7 @@ describe("TodoList Test Suite", () => {
 
   test("Adding dueToday Item", () => {
     const todoListLength = all.length;
-    expect(dueToday.length).toBe(0); // retrieving dueToday items and verifying
+    expect(dueToday.length).toBe(0);
     add({
       title: "Pay Rent",
       completed: false,
@@ -53,14 +57,22 @@ describe("TodoList Test Suite", () => {
     expect(all.length).toBe(todoListLength + 1); // verifying item added into all
   });
 
+  test("Retrieving dueToday items", () => {
+    expect(dueToday().length).toBe(1);
+  });
+
   test("Adding dueLater Item", () => {
     const todoListLength = all.length;
-    expect(dueLater.length).toBe(0); // retrieving dueLater items and verifying
+    expect(dueLater.length).toBe(0);
     add({
       title: "Adding File tax",
       completed: false,
       dueDate: tomorrow,
     });
-    expect(all.length).toBe(todoListLength + 1); // verifying item added into all
+    expect(all.length).toBe(todoListLength + 1);
+  });
+
+  test("Retrieving dueLater items", () => {
+    expect(dueLater().length).toBe(1);
   });
 });
