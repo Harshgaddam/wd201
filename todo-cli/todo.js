@@ -40,10 +40,8 @@ const todoList = () => {
     return list
       .map(
         (item) =>
-          `${item.completed ? "[x]" : "[ ]"} ${item.title} ${
-            item.dueDate === new Date().toLocaleDateString("en-CA")
-              ? ""
-              : item.dueDate
+          `${item.completed ? "[x]" : "[ ]"} ${item.title}${
+            item.dueDate === today ? "" : " " + item.dueDate
           }`
       )
       .join("\n");
