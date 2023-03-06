@@ -1,75 +1,18 @@
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
-const todoList = require("../todo");
-const {
-  all,
-  markAsComplete,
-  add,
-  overdue,
-  dueToday,
-  dueLater,
-  toDisplayableList,
-} = todoList();
+const db = require("../models");
 
-const formattedDate = (d) => {
-  return d.toISOString().split("T")[0];
-};
+describe("Todolist Test Suite", () => {
+  beforeAll(async () => {
+    await db.sequelize.sync({ force: true });
+  });
 
-var dateToday = new Date();
-const today = formattedDate(dateToday);
-const yesterday = formattedDate(
-  new Date(new Date().setDate(dateToday.getDate() - 1))
-);
-const tomorrow = formattedDate(
-  new Date(new Date().setDate(dateToday.getDate() + 1))
-);
-
-describe("TodoList Test Suite", () => {
-  test("Adding overDue item", () => {
-    const todoListLength = all.length;
-    add({
-      title: "Submit Assignment",
+  test("Should add new todo", async () => {
+    const todoItemsCount = await db.Todo.count();
+    await db.Todo.addTask({
+      title: "Test todo",
       completed: false,
-      dueDate: yesterday,
+      dueDate: new Date(),
     });
-    expect(all.length).toBe(todoListLength + 1);
-  });
-
-  test("Retrieving overDue items", () => {
-    expect(overdue().length).toBe(1);
-  });
-
-  test("Marking overDue Item as complete", () => {
-    expect(all[0].completed).toBe(false);
-    markAsComplete(0);
-    expect(all[0].completed).toBe(true);
-  });
-
-  test("Adding dueToday Item", () => {
-    const todoListLength = all.length;
-    add({
-      title: "Pay Rent",
-      completed: false,
-      dueDate: today,
-    });
-    expect(all.length).toBe(todoListLength + 1);
-  });
-
-  test("Retrieving dueToday items", () => {
-    expect(dueToday().length).toBe(1);
-  });
-
-  test("Adding dueLater Item", () => {
-    const todoListLength = all.length;
-    add({
-      title: "Adding File tax",
-      completed: false,
-      dueDate: tomorrow,
-    });
-    expect(all.length).toBe(todoListLength + 1);
-  });
-
-  test("Retrieving dueLater items", () => {
-    expect(dueLater().length).toBe(1);
+    const newTodoItemsCount = await db.Todo.count();
+    expect(newTodoItemsCount).toBe(todoItemsCount + 1);
   });
 });
