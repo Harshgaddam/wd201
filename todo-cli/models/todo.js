@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 "use strict";
 const { Model } = require("sequelize");
 const { Op } = require("sequelize");
@@ -23,26 +25,23 @@ module.exports = (sequelize, DataTypes) => {
       console.log("My Todo list \n");
 
       console.log("Overdue");
+      const overDuesList = await Todo.overdue();
       console.log(
-        await Todo.overdue()
-          .map((todo) => todo.displayableString())
-          .join("\n")
+        overDuesList.map((todo) => todo.displayableString()).join("\n")
       );
       console.log("\n");
 
       console.log("Due Today");
+      const dueTodayList = await Todo.dueToday();
       console.log(
-        await Todo.dueToday()
-          .map((todo) => todo.displayableString())
-          .join("\n")
+        dueTodayList.map((todo) => todo.displayableString()).join("\n")
       );
       console.log("\n");
 
       console.log("Due Later");
+      const dueLaterList = await Todo.dueLater();
       console.log(
-        await Todo.dueLater()
-          .map((todo) => todo.displayableString())
-          .join("\n")
+        dueLaterList.map((todo) => todo.displayableString()).join("\n")
       );
       console.log("\n");
     }
